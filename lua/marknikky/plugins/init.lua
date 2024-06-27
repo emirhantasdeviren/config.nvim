@@ -10,6 +10,7 @@ end
 spec("devicons")
 spec("everforest")
 spec("lualine")
+spec("mason")
 spec("oil")
 spec("plenary")
 spec("telescope")
