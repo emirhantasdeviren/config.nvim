@@ -9,6 +9,7 @@ end
 
 spec("devicons")
 spec("everforest")
+spec("lualine")
 spec("oil")
 spec("plenary")
 spec("telescope")
