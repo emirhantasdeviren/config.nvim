@@ -9,6 +9,7 @@ end
 
 spec("devicons")
 spec("everforest")
+spec("lspconfig")
 spec("lualine")
 spec("mason")
 spec("oil")
