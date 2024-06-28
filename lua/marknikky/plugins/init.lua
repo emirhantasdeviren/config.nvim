@@ -1,7 +1,7 @@
 local M = {}
 
 local spec = function(item)
-    ok, i = pcall(require, "marknikky.plugins." .. item)
+    local ok, i = pcall(require, "marknikky.plugins." .. item)
     if ok then
         table.insert(M, i)
     end
