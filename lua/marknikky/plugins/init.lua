@@ -9,6 +9,7 @@ end
 
 spec("cmp")
 spec("devicons")
+spec("fugitive")
 spec("everforest")
 spec("lspconfig")
 spec("lualine")
