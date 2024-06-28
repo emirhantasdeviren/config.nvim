@@ -1,13 +1,13 @@
-return {
+local M = {
     "neanias/everforest-nvim",
     version = false,
     lazy = false,
-    priority = 1000, -- make sure to load this before all the other start plugins
-    -- Optional; default configuration will be used if setup isn't called.
-    config = function()
-        require("everforest").setup({
-            background = "medium",
-        })
-        vim.cmd([[colorscheme everforest]])
-    end,
+    priority = 1000,
 }
+
+M.config = function()
+    require("everforest").setup()
+    vim.cmd([[colorscheme everforest]])
+end
+
+return M
