@@ -7,6 +7,7 @@ local spec = function(item)
     end
 end
 
+spec("cmp")
 spec("devicons")
 spec("everforest")
 spec("lspconfig")

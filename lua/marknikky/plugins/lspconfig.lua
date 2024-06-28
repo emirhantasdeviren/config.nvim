@@ -18,6 +18,17 @@ M.config = function()
         "html",
     }
 
+    local border = "rounded"
+    local handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
+
+    local capabilities = nil
+    if pcall(require, "cmp_nvim_lsp") then
+        capabilities = require("cmp_nvim_lsp").default_capabilities()
+    end
+
     local on_attach = function(_, bufnr)
         local opts = { buffer = bufnr, silent = true }
         local keymap = vim.keymap
@@ -36,6 +47,12 @@ M.config = function()
 
         opts.desc = "Format"
         keymap.set('n', "<leader>lf", vim.lsp.buf.format, opts)
+
+        opts.desc = "Code actions"
+        keymap.set('n', "<leader>la", vim.lsp.buf.code_action, opts)
+
+        opts.desc = "Signature help"
+        keymap.set('i', "<C-h>", vim.lsp.buf.signature_help, opts)
     end
 
     local diagnostic_config = {
@@ -54,16 +71,17 @@ M.config = function()
     }
     vim.diagnostic.config(diagnostic_config)
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-    require("lspconfig.ui.windows").default_options.border = "rounded"
-
     for _, server in pairs(servers) do
-        local opts = { on_attach = on_attach }
+        local opts = { on_attach = on_attach, handlers = handlers }
 
         local ok, settings = pcall(require, "marknikky.lsp." .. server)
         if ok then
-            opts = vim.tbl_deep_extend("force", settings, opts)
+            opts = vim.tbl_deep_extend(
+                "force",
+                { capabilities = capabilities },
+                settings,
+                opts
+            )
         end
 
         if server == "lua_ls" then
