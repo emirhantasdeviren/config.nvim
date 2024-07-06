@@ -10,6 +10,7 @@ M.config = function()
     vim.keymap.set('n', "<leader>gp", function()
         vim.cmd.Git({ args = { "pull" } })
     end, { desc = "Git Pull" })
+    vim.keymap.set('n', "<leader>gd", vim.cmd.Gdiffsplit, { desc = "Git Diff" })
 end
 
 return M
