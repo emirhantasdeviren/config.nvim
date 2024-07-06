@@ -7,6 +7,9 @@ M.config = function()
     vim.keymap.set('n', "<leader>gf", function()
         vim.cmd.Git({ args = { "fetch" } })
     end, { desc = "Git Fetch" })
+    vim.keymap.set('n', "<leader>gp", function()
+        vim.cmd.Git({ args = { "pull" } })
+    end, { desc = "Git Pull" })
 end
 
 return M
