@@ -13,6 +13,9 @@ M.config = function()
     vim.keymap.set('n', "<leader>gd", vim.cmd.Gdiffsplit, { desc = "Git Diff" })
     vim.keymap.set('n', "<leader>gw", vim.cmd.Gwrite, { desc = "Git Write" })
     vim.keymap.set('n', "<leader>gr", vim.cmd.Gread, { desc = "Git Read" })
+    vim.keymap.set('n', "<leader>gc", function()
+        vim.cmd.Git({ args = { "commit" } })
+    end, { desc = "Git Commit" })
 end
 
 return M
